@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>JSON Formatter</h1>
+    <a href="/">Back to Home</a>
+    <form method="POST">
+        <textarea name="json_input" placeholder="Enter JSON here..." rows="10" cols="50">{{ request.form.get('json_input', '') }}</textarea><br>
+        <button type="submit">Format JSON</button>
+    </form>
+    {% if formatted %}
+        <h2>Formatted JSON:</h2>
+        <pre>{{ formatted }}</pre>
+    {% endif %}
+    {% if error %}
+        <h2>Error:</h2>
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

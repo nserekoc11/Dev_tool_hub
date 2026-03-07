@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Tester</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Regex Tester</h1>
+    <a href="/">Back to Home</a>
+    <form method="POST">
+        <label for="regex_pattern">Regex Pattern:</label><br>
+        <input type="text" id="regex_pattern" name="regex_pattern" value="{{ request.form.get('regex_pattern', '') }}"><br><br>
+        <label for="test_string">Test String:</label><br>
+        <textarea id="test_string" name="test_string" rows="5" cols="50">{{ request.form.get('test_string', '') }}</textarea><br><br>
+        <button type="submit">Test Regex</button>
+    </form>
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+    {% if error %}
+        <h2>Error:</h2>
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
