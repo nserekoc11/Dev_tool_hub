@@ -48,7 +48,19 @@ def password_gen():
     password = ""
     error = ""
     if request.method == 'POST':
-        length = int(request.form.get('length', 12)) #get desired password length from user input
+        #error handling for invalid length input
+        try:
+            length = int(request.form.get('length', 12))
+        except ValueError:
+            error = "Invalid length. Please enter a valid number."
+            return render_template('password_generator.html', password=password, error=error)
+        
+        #length check input handling
+        if length < 4:
+            error = "length must be greater than 4 characters."
+            return render_template('password_generator.html', password=password, error=error)
+
+        #form input handling for character type selection
         include_uppercase = 'uppercase' in request.form #check if uppercase letters should be included
         include_lowercase = 'lowercase' in request.form #check if lowercase letters should be included
         include_digits = 'digits' in request.form #check if digits should be included
@@ -64,14 +76,11 @@ def password_gen():
         if include_special:
             charset += "!@#$%^&*()-_=+[]{}|;:,.<>?/~`"
 
-        if charset:
+
+        if not charset:
+            error = "At least one character type must be selected."
+        else:
             password = ''.join(random.choice(charset) for _ in range(length)) #generate random password based on selected criteria
-        
-        try:
-            if len(password) <= 4:
-                error = "Password length must be at least 4 characters."
-        except Exception as e:
-            error = str(e)
     return render_template('password_generator.html', password=password, error=error) #display generated password
 
 if __name__ == '__main__':
