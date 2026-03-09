@@ -5,21 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev Tool Hub</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <header>
-        <h1>Developer Tool Hub</h1>
-    </header>
-    <nav>
+    <div id="title">
+        <header>
+            <h1>Developer Tool Hub</h1>
+        </header>
+    </div>
+    
+    <nav >
         <ul>
-            <li><a href="/json">JSON Formatter</a></li>
-            <li><a href="/regex">Regex Tester</a></li>
-            <li><a href="/password">Password Generator</a></li>
+            <div class="container">
+                <div class="item"><li><a href="/json">JSON Formatter</a></li></div>
+                <div class="item"><li id="link2"><a href="/regex">Regex Tester</a></li></div>
+                <div class="item"><li><a href="/password">Password Generator</a></li></div>
+            </div>
+            
         </ul>
     </nav>
     <main>
         <p>Choose a tool from above to get started!</p>
     </main>
+    
+
+
 
 </body>
 </html>
